@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "homepage": "https://endercom502/goit-praca-grupowa-JS-grupa3",
+  "homepage": "https://zuzanna.celnik/goit-praca-grupowa-JS-grupa3",
   "scripts": {
     "dev": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /goit-praca-grupowa-JS-grupa3/"
