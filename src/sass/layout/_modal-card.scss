@@ -1,0 +1,74 @@
+.modal__body {
+    background-color: #0E0E0E;
+}
+.modal__contener {
+    width: 930px;
+    height: 1023px;
+    background-color: #FFFFFF;
+    border-radius: 300px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.container__event_card {
+    display: flex;
+    flex-direction: row;
+    
+    align-items: stretch;
+    max-width: 1023px;
+    max-height: 930px;
+    font-family: 'Montserrat', sans-serif;
+    align-items: center;
+    max-height: 641px;
+}
+
+.modal__button {
+    color: #FFFFFF;
+    background-color: #4C00FE;
+    width: 145px;
+    height: 40px;
+    border-radius: 5px;
+    border-color: transparent;
+    font-size: 16px;
+    font-weight: 500;
+}
+.modal__h1 {
+    color: #DC56C5;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    margin: 0px;
+}
+.modal__p {
+    color: #0E0E0E;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    width: 450px;
+    margin: 0px;
+    padding-bottom: 20px;
+    padding-top: 7px;
+}
+.modal__more-from {
+    color: #4C00FE;
+    font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+        border: 1px solid #4C00FE;
+        border-radius: 5px;
+}
+.modal__small-poster {
+    width: 132px;
+    height: 132px;
+    border-radius: 50px 0px;
+    background-image: url('../../images/mini_ivent.png');
+    background-position: 50% 50%;
+        background-repeat: no-repeat;
+        background-size: auto;
+        margin-left: auto;
+        margin-right: auto;
+}
+.modal__text-container {
+    padding-left: 60px;
+}
