@@ -1,3 +1,3 @@
-import './js/pagination'
+import './js/pagination';
 import './js/modal';
-import './js/search_api'
+import './js/search_api';
