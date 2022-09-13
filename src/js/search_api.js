@@ -9,7 +9,7 @@ let page = 0;
 let countryCode = 'pl';
 let keyword = '';
 
-const getEvents = (keyword, countryCode, page) => {
+export const getEvents = (keyword, countryCode, page) => {
   const params = {
     apikey: API_KEY,
     countryCode: countryCode,
@@ -26,7 +26,7 @@ getEvents(keyword, countryCode, page)
     if (response.data.page.totalElements === 0) {
       console.log('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
     } else {
-      //  console.log(response.data._embedded.events);
+      console.log(response.data._embedded.events);
       renderResults(response);
     }
   })
