@@ -1,0 +1,103 @@
+.event_post{
+    display: flex;
+        flex-wrap: wrap;
+        margin-left: -14px;
+        margin-top: -42px;
+        padding-bottom: 150px;
+    
+        @media screen and (min-width: 768px) {
+            margin-left: -28px;
+            margin-top: -58px;
+        }
+    
+        @media screen and (min-width: 1280px) {
+            margin-left: -70px;
+            margin-top: -63px;
+            padding-bottom: 190px;
+        }
+}
+
+.event_item {
+    position: relative;
+    display: block;
+    margin-left: 14px;
+    margin-top: 42px;
+    flex-basis: calc((100% - 28px) / 2);
+
+    &::before {
+        content: url('../../images/cards/square.svg');
+        position: absolute;
+        z-index: 1;
+        width: 108px;
+        height: 101px;
+        top: -9px;
+        right: -10px;
+    }
+
+    @media screen and (min-width: 768px) {
+        margin-left: 28px;
+        margin-top: 58px;
+        flex-basis: calc((100% - 84px) / 3);
+
+        &::before {
+            content: url('../../images/cards/square.svg');
+            width: 153px;
+            height: 143px;
+            top: -13px;
+            right: -14px;
+        }
+    }
+
+    @media screen and (min-width: 1280px) {
+        margin-left: 70px;
+        margin-top: 63px;
+        flex-basis: calc((100% - 280px) / 4);
+    }
+
+    &-name {
+        font-weight: 700;
+        font-size: 16px;
+        text-align: center;
+        color: #dc56c5;
+        margin-bottom: 5px;
+
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -ms-line-clamp: 1;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        display: -webkit-box;
+        display: box;
+        word-wrap: break-word;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+    }
+
+    &-date {
+        font-weight: 400;
+        font-size: 16px;
+        text-align: center;
+        color: #ffffff;
+        margin-bottom: 5px;
+    }
+
+    &-city {
+        font-weight: 600;
+        font-size: 14px;
+        color: #ffffff;
+        -ms-text-overflow: ellipsis;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -ms-line-clamp: 1;
+        -webkit-line-clamp: 1;
+        line-clamp: 1;
+        display: -webkit-box;
+        display: box;
+        word-wrap: break-word;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        }
+    }
