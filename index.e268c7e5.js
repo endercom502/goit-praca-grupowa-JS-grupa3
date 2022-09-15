@@ -1,0 +1,2 @@
+var openModal=document.querySelector(".event #event_post"),modalBody=document.querySelector(".modal__backdrop"),modalClose=document.querySelector(".modal__esc"),hiden=function(e){modalBody.classList.remove("is-hiddenn")},close=function(e){modalBody.classList.add("is-hiddenn")};openModal.addEventListener("click",hiden),modalClose.addEventListener("click",close),document.addEventListener("keyup",close);
+//# sourceMappingURL=index.e268c7e5.js.map
