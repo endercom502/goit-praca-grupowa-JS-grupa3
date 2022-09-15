@@ -1,11 +1,7 @@
-() => {
-  const refs = {
-    openModalBtn: document.getElementsByClassName('event_item'),
-    closeModalBtn: document.getElementsByClassName('modal__esc'),
-    modal: document.querySelector('[data-modal]'),
-  };
-
-  refs.openModalBtn.addEventListener('click', toggleModal);
-    refs.closeModalBtn.addEventListener('click', toggleModal);
-    
-};
+// import $ from 'jquery';
+const modalBody = document.querySelector('[data-modal]');
+// const openModal = document.getElementsByClassName('event_item');
+// openModal.addEventListener('click', () => {
+modalBody.removeClass('is-hiddenn');
+// });
+console.log(modalBody);
