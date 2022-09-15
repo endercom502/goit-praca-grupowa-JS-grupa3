@@ -10,7 +10,12 @@ const close = close => {
 
 openModal.addEventListener('click', hiden);
 modalClose.addEventListener('click', close);
-modalClose.addEventListener('keydown', event => {
-  console.log('key: ', event.key);
-  console.log('code: ', event.code);
-});
+// // const keyCode = document.addEventListener('keyup', event => {
+// //   console.log('key: ', event.key);
+// // });
+// // function closeEsc() {
+// //   if (keyCode === Escape) {
+// //     console.log(close);
+//   }
+// }
+document.addEventListener('keyup', close);
