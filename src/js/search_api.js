@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { createPagination } from './pagination';
 
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events';
 const API_KEY = 'zgJDbIZVlwZnbWttdYxA1sycG5ZV7RfO';
 
 const eventCard = document.querySelector('.event #event_post');
 
-let page = 0;
+export let page = 0;
 let countryCode = 'pl';
 let keyword = '';
 
@@ -23,12 +24,14 @@ export const getEvents = (keyword, countryCode, page) => {
 
 getEvents(keyword, countryCode, page)
   .then(function (response) {
+    let totalPages = response.data.page.totalPages;
+    // console.log(totalPages);
     if (response.data.page.totalElements === 0) {
       console.log('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
     } else {
-      console.log(response.data._embedded.events);
       renderResults(response);
     }
+    return (totalPages = response.data.page.totalPages);
   })
   .catch(error => console.log(error));
 
