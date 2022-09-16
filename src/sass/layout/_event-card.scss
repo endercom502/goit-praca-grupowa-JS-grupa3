@@ -101,3 +101,13 @@
         box-orient: vertical;
         }
     }
+        .event_item-image {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 8px;
+            display: block;
+            width: 120px;
+            height: 151px;
+            border-radius: 50px 0;
+            object-fit: cover;
+        }
