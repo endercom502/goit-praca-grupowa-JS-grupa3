@@ -25,7 +25,7 @@
     flex-basis: calc((100% - 28px) / 2);
 
     &::before {
-        content: url('../../images/cards/square.svg');
+        content: url('../images/cards/square.svg');
         position: absolute;
         z-index: 1;
         width: 108px;
@@ -40,7 +40,7 @@
         flex-basis: calc((100% - 84px) / 3);
 
         &::before {
-            content: url('../../images/cards/square.svg');
+            content: url('../images/cards/square.svg');
             width: 153px;
             height: 143px;
             top: -13px;
