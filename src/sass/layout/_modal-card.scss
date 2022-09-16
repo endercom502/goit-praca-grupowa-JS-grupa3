@@ -149,7 +149,7 @@
     width: 144px;
     height: 144px;
     border-radius: 100px 100px;
-    background-image: url('../../images/mini_ivent.png');
+    background-image: url('./../images/mini_ivent.png');
     background-position: 50% 50%;
         background-repeat: no-repeat;
         background-size: cover;
@@ -187,3 +187,19 @@
     height: 0;
     }
 }
+.modal__esc {
+    color: #4C00FE;
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    font-size: 30px;
+    font-weight: 700;
+    border: transparent;
+    background-color: #FFF2FD;
+    @media (max-width: 1280px) {
+            right: 25px;
+            top: 25px;
+            font-size: 22px;
+        }
+}
+ 
