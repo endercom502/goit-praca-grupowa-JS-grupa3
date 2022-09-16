@@ -1,9 +1,9 @@
 import axios from 'axios';
+export { axios } from 'axios';
+export const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events';
+export const API_KEY = 'zgJDbIZVlwZnbWttdYxA1sycG5ZV7RfO';
 
-const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events';
-const API_KEY = 'zgJDbIZVlwZnbWttdYxA1sycG5ZV7RfO';
-
-const eventCard = document.querySelector('.event #event_post');
+export const eventCard = document.querySelector('.event #event_post');
 
 let page = 0;
 let countryCode = 'pl';
