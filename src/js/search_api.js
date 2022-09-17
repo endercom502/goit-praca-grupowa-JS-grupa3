@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { createPagination } from './pagination';
 
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events';
 const API_KEY = 'zgJDbIZVlwZnbWttdYxA1sycG5ZV7RfO';
@@ -7,10 +6,11 @@ const API_KEY = 'zgJDbIZVlwZnbWttdYxA1sycG5ZV7RfO';
 const eventCard = document.querySelector('.event #event_post');
 
 export let page = 0;
-let countryCode = 'pl';
-let keyword = '';
+let totalPages = '';
+export let countryCode = 'pl';
+export let keyword = '';
 
-export const getEvents = (keyword, countryCode, page) => {
+export function getEvents(keyword, countryCode, page) {
   const params = {
     apikey: API_KEY,
     countryCode: countryCode,
@@ -20,24 +20,24 @@ export const getEvents = (keyword, countryCode, page) => {
 
   const response = axios.get(`${BASE_URL}`, { params });
   return response;
-};
+}
 
 getEvents(keyword, countryCode, page)
   .then(function (response) {
-    let totalPages = response.data.page.totalPages;
-    // console.log(totalPages);
+    totalPages += response.data.page.totalPages;
+    console.log(totalPages);
+
     if (response.data.page.totalElements === 0) {
       console.log('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
     } else {
       renderResults(response);
     }
-    return (totalPages = response.data.page.totalPages);
   })
   .catch(error => console.log(error));
 
 //renderowanie wyników wyszukiwania //
 
-function renderResults(response) {
+export function renderResults(response) {
   const markup = response.data._embedded.events
     .map(({ images, name, dates, _embedded }) => {
       return `
