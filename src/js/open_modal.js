@@ -1,12 +1,14 @@
-import { BASE_URL, API_KEY, getEvents } from './search_api.js';
+import { API_KEY, getEvents, BASE_URL } from './search_api.js';
 import { axios } from 'axios';
-// const modalAPI = document.querySelector('.modal__big-img');
+// const idNumber = document.querySelector('.event_item');
 const eventNameToModal = document.querySelector('.modal__container');
 let page = 0;
 let countryCode = 'pl';
 let keyword = '';
-
-getEvents(keyword, countryCode, page)
+let id = '';
+let size = 1;
+let city = '';
+getEvents(keyword, countryCode, page, id, size, city)
   .then(function (response) {
     if (response.data.page.totalElements === 0) {
       console.log('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
@@ -19,7 +21,7 @@ getEvents(keyword, countryCode, page)
 
 function renderResults1(response) {
   const markup = response.data._embedded.events
-    .map(({ images, name, dates, _embedded }) => {
+    .map(({ images, name, dates, _embedded, description }) => {
       return `
       <div class="modal__small-poster"> </div>
       <div class="container__event_card">
@@ -28,10 +30,9 @@ function renderResults1(response) {
         </div>
         <div class="modal__text-container">
         <h2 class="modal__h1">INFO</h2>
-        <p class="modal__p">Atlas Weekend is the largest music festival in Ukraine.More than 200 artists will create a proper music festival
-        atmosphere on 10 stages</p>
+        <p class="modal__p">${description}</p>
         <h2 class="modal__h1">WHEN</h2>
-        <p class="modal__p">2021-06-09</p>
+        <p class="modal__p">${dates?.start.localDate}</p>
         <h2 class="modal__h1">WHERE</h2>
         <p class="modal__p">Kyiv, Ukraine</p>
         <p class="modal__p" style="padding-top: 5px;">VDNH</p>
@@ -73,5 +74,4 @@ modalClose.addEventListener('click', close);
 //   }
 // }
 document.addEventListener('keyup', close);
-console.log(getEvents1);
-console.log(eventNameToModal.firstChild);
+console.log(idNumber);
