@@ -6,7 +6,7 @@ const API_KEY = 'zgJDbIZVlwZnbWttdYxA1sycG5ZV7RfO';
 const eventCard = document.querySelector('.event #event_post');
 
 let page = 0;
-let countryCode = 'pl';
+let countryCode = '';
 let keyword = '';
 
 export const getEvents = (keyword, countryCode, page) => {
@@ -22,11 +22,11 @@ export const getEvents = (keyword, countryCode, page) => {
 };
 
 getEvents(keyword, countryCode, page)
-  .then(function (response) {
+  .then  (function (response) {
     if (response.data.page.totalElements === 0) {
       console.log('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
     } else {
-      console.log(response.data._embedded.events);
+
       renderResults(response);
     }
   })
@@ -44,7 +44,7 @@ function renderResults(response) {
                   <p class="event_item-name"><b>${name}</b></p>
                   <p class="event_item-date"><b>${dates?.start.localDate}</b></p>
                   <p class="event_item-venue"><b>${_embedded?.venues[0].name}</b></p>
-                  <p class="event_item-city"><b>${_embedded?.venues[0].city.name}</b></p>
+                  <p class="event_item-city"><b>${_embedded?.venues[0].city ?_embedded?.venues[0].city.name:name}</b></p>
             </a>
          </li>`;
     })
@@ -52,3 +52,40 @@ function renderResults(response) {
 
   eventCard.insertAdjacentHTML('beforeend', markup);
 }
+
+
+
+const inputKeyword = document.querySelector('.search-input');
+const inputCountry = document.querySelector('.search-select ')
+
+console.log(inputKeyword)
+
+const onSearchFormSubmit = async event => {
+   event.preventDefault();
+
+   const query = inputKeyword.value;
+   const country = inputCountry.value;
+
+
+   
+ eventCard.innerHTML = '';
+   try {
+       getEvents(query,country)
+      .then  (function (response) {
+         if (response.data.page.totalElements === 0) {
+           alert('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
+         } else {
+     
+           renderResults(response);
+         }
+       })
+        .catch(error => console.log(error));
+   
+
+   } catch (err) {
+     console.log(err);
+   }
+ };
+ 
+ inputKeyword.addEventListener('change',onSearchFormSubmit)
+ inputCountry.addEventListener('change',onSearchFormSubmit)
