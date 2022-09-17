@@ -49,6 +49,7 @@
     margin-left: auto;
     margin-right: auto;
     transform: translate(-50%, 0%);
+    background-repeat: no-repeat;
     @media (max-width: 1280px) {
             width: 595px;
             height: 831px;
@@ -202,4 +203,7 @@
             font-size: 22px;
         }
 }
- 
+ .modal__img_big {
+    width: 360px; 
+    height: 641px;
+ }

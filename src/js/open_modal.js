@@ -1,50 +1,54 @@
-import { axios, BASE_URL, API_KEY, _embedded } from './search_api.js';
-
-const modalAPI = document.querySelector('.modal__big-img');
-const eventNameToModal = document.querySelector('.event_item-name');
+import { BASE_URL, API_KEY, getEvents } from './search_api.js';
+import { axios } from 'axios';
+// const modalAPI = document.querySelector('.modal__big-img');
+const eventNameToModal = document.querySelector('.modal__container');
+let page = 0;
 let countryCode = 'pl';
 let keyword = '';
-export const getEvents1 = (keyword1, countryCode1, page1) => {
-  const params1 = {
-    apikey: API_KEY,
-    countryCode1: countryCode,
-    keyword1: keyword,
-  };
 
-  const response1 = axios.get(`${BASE_URL}`, { params1 });
-  return response1;
-};
 getEvents(keyword, countryCode, page)
   .then(function (response) {
     if (response.data.page.totalElements === 0) {
       console.log('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
     } else {
       console.log(response.data._embedded.events);
-      renderResults(response);
+      renderResults1(response);
     }
   })
   .catch(error => console.log(error));
 
-//renderowanie wyników wyszukiwania //
+function renderResults1(response) {
+  const markup = response.data._embedded.events
+    .map(({ images, name, dates, _embedded }) => {
+      return `
+      <div class="modal__small-poster"> </div>
+      <div class="container__event_card">
+        <div class="modal__big-img">
+            <img class="modal__img_big" src="${images?.[7].url}">
+        </div>
+        <div class="modal__text-container">
+        <h2 class="modal__h1">INFO</h2>
+        <p class="modal__p">Atlas Weekend is the largest music festival in Ukraine.More than 200 artists will create a proper music festival
+        atmosphere on 10 stages</p>
+        <h2 class="modal__h1">WHEN</h2>
+        <p class="modal__p">2021-06-09</p>
+        <h2 class="modal__h1">WHERE</h2>
+        <p class="modal__p">Kyiv, Ukraine</p>
+        <p class="modal__p" style="padding-top: 5px;">VDNH</p>
+        <h2 class="modal__h1">WHO</h2>
+        <p class="modal__p">The Black Eyed Peas</p>
+        <h2 class="modal__h1">PRICES</h2>
+        <p class="modal__p">Standart 300-500 UAH</p>
+        <button class="modal__button">BUY TICKETS</button>
+        <p class="modal__p">VIP 1000-1500 UAH</p>
+        <button class="modal__button">BUY TICKETS</button>
+        </div>
+      `;
+    })
+    .join('');
 
-// // function renderResults(response1) {
-// //   const markup = response1.data._embedded.events
-// //     .map(({ images, name, dates, _embedded }) => {
-// //       return `
-// //         <li class="event_item">
-// //             <a class="event_item-link href="#">
-// //                <img class="event_item-image" src="${images?.[7].url}" alt="${name}" width="180" height="227" loading="lazy"/>
-// //                   <p class="event_item-name"><b>${name}</b></p>
-// //                   <p class="event_item-date"><b>${dates?.start.localDate}</b></p>
-// //                   <p class="event_item-venue"><b>${_embedded?.venues[0].name}</b></p>
-// //                   <p class="event_item-city"><b>${_embedded?.venues[0].city.name}</b></p>
-// //             </a>
-// //          </li>`;
-// //     })
-// //     .join('');
-
-// //   eventNameToModal.insertAdjacentHTML('beforeend', markup);
-// }
+  eventNameToModal.insertAdjacentHTML('beforeend', markup);
+}
 
 // open modal
 const openModal = document.querySelector('.event #event_post');
