@@ -54,6 +54,7 @@ function renderResults(response) {
 }
 
 
+//Search by keyword and search by country
 
 const inputKeyword = document.querySelector('.search-input');
 const inputCountry = document.querySelector('.search-select ')
@@ -89,3 +90,5 @@ const onSearchFormSubmit = async event => {
  
  inputKeyword.addEventListener('change',onSearchFormSubmit)
  inputCountry.addEventListener('change',onSearchFormSubmit)
+
+// Search from Button search more from author
