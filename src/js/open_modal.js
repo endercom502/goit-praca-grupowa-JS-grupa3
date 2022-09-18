@@ -8,6 +8,8 @@ let keyword = '';
 let id = '';
 let size = 1;
 let city = '';
+// const response = axios.get(`${BASE_URL}${id}`, { params });
+// return response;
 getEvents(keyword, countryCode, page, id, size, city)
   .then(function (response) {
     if (response.data.page.totalElements === 0) {
