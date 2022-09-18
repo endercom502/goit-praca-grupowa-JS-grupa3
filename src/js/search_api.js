@@ -3,13 +3,15 @@ import axios from 'axios';
 const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events';
 const API_KEY = 'zgJDbIZVlwZnbWttdYxA1sycG5ZV7RfO';
 
-const eventCard = document.querySelector('.event #event_post');
+export const eventCard = document.querySelector('.event #event_post');
 
-let page = 0;
-let countryCode = '';
-let keyword = '';
+export let page = 0;
 
-export const getEvents = (keyword, countryCode, page) => {
+export let countryCode = 'PL';
+export let keyword = '';
+let totalItems = '';
+
+export function getEvents(keyword, countryCode, page) {
   const params = {
     apikey: API_KEY,
     countryCode: countryCode,
@@ -19,22 +21,24 @@ export const getEvents = (keyword, countryCode, page) => {
 
   const response = axios.get(`${BASE_URL}`, { params });
   return response;
-};
+}
 
 getEvents(keyword, countryCode, page)
-  .then  (function (response) {
+  .then(function (response) {
+    totalItems = response.data.page.totalElements;
+    // console.log(totalItems);
     if (response.data.page.totalElements === 0) {
       console.log('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
     } else {
-
       renderResults(response);
+      return totalItems;
     }
   })
   .catch(error => console.log(error));
 
 //renderowanie wyników wyszukiwania //
 
-function renderResults(response) {
+export function renderResults(response) {
   const markup = response.data._embedded.events
     .map(({ images, name, dates, _embedded,id }) => {
       return `
@@ -54,15 +58,22 @@ function renderResults(response) {
   eventCard.insertAdjacentHTML('beforeend', markup);
 }
 
+<<<<<<< HEAD
 
 //Search by keyword and search by country
 
+=======
+>>>>>>> e26a8c62775036861b42d288452480682a28863d
 const inputKeyword = document.querySelector('.search-input');
-const inputCountry = document.querySelector('.search-select ')
+const inputCountry = document.querySelector('.search-select ');
 
+<<<<<<< HEAD
+=======
+console.log(inputKeyword);
+>>>>>>> e26a8c62775036861b42d288452480682a28863d
 
 const onSearchFormSubmit = async event => {
-   event.preventDefault();
+  event.preventDefault();
 
    const query = inputKeyword.value;
    const country = inputCountry.value;
