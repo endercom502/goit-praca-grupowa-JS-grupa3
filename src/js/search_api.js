@@ -45,6 +45,7 @@ function renderResults(response) {
                   <p class="event_item-date"><b>${dates?.start.localDate}</b></p>
                   <p class="event_item-venue"><b>${_embedded?.venues[0].name}</b></p>
                   <p class="event_item-city"><b>${_embedded?.venues[0].city ?_embedded?.venues[0].city.name:name}</b></p>
+                  <button class="more-from-author" value='${name}'>More</button>
             </a>
          </li>`;
     })
@@ -59,7 +60,6 @@ function renderResults(response) {
 const inputKeyword = document.querySelector('.search-input');
 const inputCountry = document.querySelector('.search-select ')
 
-console.log(inputKeyword)
 
 const onSearchFormSubmit = async event => {
    event.preventDefault();
@@ -88,7 +88,40 @@ const onSearchFormSubmit = async event => {
    }
  };
  
+
  inputKeyword.addEventListener('change',onSearchFormSubmit)
  inputCountry.addEventListener('change',onSearchFormSubmit)
 
 // Search from Button search more from author
+const btnMore = document.querySelector('.more-from-author');
+const eventName = document.querySelector('.event_item-name');
+
+
+
+const onSearchFromAuthor = async event =>{
+   console.log('Hi ')
+   event.preventDefault();
+
+   const evName = btnMore.value;
+
+   console.log(evName)
+
+   eventCard.innerHTML = '';
+      try{
+         getEvents(evName)
+         .then (function(response){
+            if(response.data.page.totalElements ===0){
+               alert('No events found');
+            }else{
+               renderResults(response);
+               console.log(response.data._embedded.events)
+            }
+         })
+      }
+}
+
+btnMore.addEventListener('click',testFunction);
+
+ function testFunction(){
+console.log ('hi');
+}
