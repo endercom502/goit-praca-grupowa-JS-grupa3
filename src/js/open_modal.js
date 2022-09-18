@@ -76,4 +76,4 @@ modalClose.addEventListener('click', close);
 //   }
 // }
 document.addEventListener('keyup', close);
-console.log(idNumber);
+console.log(markup);
