@@ -36,12 +36,12 @@ getEvents(keyword, countryCode, page)
 
 function renderResults(response) {
   const markup = response.data._embedded.events
-    .map(({ images, name, dates, _embedded }) => {
+    .map(({ images, name, dates, _embedded,id }) => {
       return `
         <li class="event_item">
             <a class="event_item-link href="#">
                <img class="event_item-image" src="${images?.[7].url}" alt="${name}" width="180" height="227" loading="lazy"/>
-                  <p class="event_item-name"><b>${name}</b></p>
+                  <p class="event_item-name" event-id='${id}'><b>${name}</b></p>
                   <p class="event_item-date"><b>${dates?.start.localDate}</b></p>
                   <p class="event_item-venue"><b>${_embedded?.venues[0].name}</b></p>
                   <p class="event_item-city"><b>${_embedded?.venues[0].city ?_embedded?.venues[0].city.name:name}</b></p>
@@ -98,30 +98,45 @@ const eventName = document.querySelector('.event_item-name');
 
 
 
-const onSearchFromAuthor = async event =>{
-   console.log('Hi ')
-   event.preventDefault();
+//const onSearchFromAuthor = async event =>{
+//   console.log('Hi ')
+//   event.preventDefault();
 
-   const evName = btnMore.value;
+//   const evName = btnMore.value;
 
-   console.log(evName)
+//   console.log(evName)
 
-   eventCard.innerHTML = '';
-      try{
-         getEvents(evName)
-         .then (function(response){
-            if(response.data.page.totalElements ===0){
-               alert('No events found');
-            }else{
-               renderResults(response);
-               console.log(response.data._embedded.events)
-            }
-         })
-      }
+//   eventCard.innerHTML = '';
+//      try{
+//         getEvents(evName)
+//         .then (function(response){
+//            if(response.data.page.totalElements ===0){
+//               alert('No events found');
+//            }else{
+//               renderResults(response);
+//               console.log(response.data._embedded.events)
+//            }
+//         })
+//      }
+//}
+
+//btnMore.addEventListener('click',testFunction);
+
+// function testFunction(){
+//console.log ('hi');
+//}
+
+
+const id = ""
+
+export const getById = (id)=>{
+   const params = {
+      apikey:API_KEY,
+      id:id,
+   };
+   const response = axios.get(`${BASE_URL}`,{params},'Z7r9jZ1Ad8Oeb')
 }
-
-btnMore.addEventListener('click',testFunction);
-
- function testFunction(){
-console.log ('hi');
-}
+getById('Z7r9jZ1Ad8Oeb')
+   .then (function(response){
+      console.log(response.data._embedded.events)
+   })
