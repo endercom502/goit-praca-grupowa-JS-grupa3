@@ -43,7 +43,6 @@ function renderResults(response) {
                <img class="event_item-image" src="${images?.[7].url}" alt="${name}" width="180" height="227" loading="lazy"/>
                   <p class="event_item-name"><b>${name}</b></p>
                   <p class="event_item-date"><b>${dates?.start.localDate}</b></p>
-                  <p class="event_item-venue"><b>${_embedded?.venues[0].name}</b></p>
                   <p class="event_item-city"><b>${_embedded?.venues[0].city ?_embedded?.venues[0].city.name:name}</b></p>
             </a>
          </li>`;
