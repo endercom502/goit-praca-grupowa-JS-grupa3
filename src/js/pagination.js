@@ -1,10 +1,20 @@
+///// PAGINATION
 import Pagination from 'tui-pagination';
-import { page } from './search_api';
+import {
+  page,
+  keyword,
+  countryCode,
+  eventCard,
+  getEvents,
+  renderResults,
+} from './search_api';
 
-const container = document.getElementById('tui-pagination-container');
+let totalItems;
+
+const container = document.getElementById('tui-pagination-container'); // pagination container
 const options = {
   // below default value of options
-  totalItems: 500,
+  totalItems: 510,
   itemsPerPage: 20,
   visiblePages: 5,
   page: page + 1,
@@ -20,7 +30,7 @@ const options = {
       '<span class="tui-ico-{{type}}">{{type}}</span>' +
       '</a>',
     disabledMoveButton:
-      '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
+      '<span class="idden tui-page-btn tui-is-disabled tui-{{type}}" hidden>' +
       '<span class="tui-ico-{{type}}">{{type}}</span>' +
       '</span>',
     moreButton:
@@ -31,7 +41,28 @@ const options = {
 };
 const pagination = new Pagination(container, options);
 
+getEvents(keyword, countryCode, page).then(function (response) {
+  totalItems = response.data.page.totalElements; //  <--- tutaj jest dostępna wartość
+  console.log(totalItems); // OK.
+  return totalItems; // ale nie jest dostępna poza funkcją.
+});
+
 pagination.on('afterMove', event => {
-  const currentPage = event.page;
+  let currentPage = event.page;
+  eventCard.innerHTML = ''; // clear current search resulst page
+
+  getEvents(keyword, countryCode, currentPage) // render selected page
+    .then(function (response) {
+      totalPages = response.data.page.totalPages;
+      if (response.data.page.totalElements === 0) {
+        console.log('No events found. Try different quote'); // !! dodać obsługę wyświetlenia komunikatu gdy brak rezultatów !!
+      } else {
+        renderResults(response);
+      }
+    })
+    .catch(error => console.log(error));
+
   console.log(currentPage);
 });
+
+console.log(totalItems);
