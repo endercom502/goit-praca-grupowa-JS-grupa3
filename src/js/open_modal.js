@@ -23,7 +23,7 @@ getEvents(keyword, countryCode, page, id, size, city)
 
 function renderResults1(response) {
   const markup = response.data._embedded.events
-    .map(({ images, name, dates, _embedded, description }) => {
+    .map(({ images, name, dates, _embedded, description, priceRanges }) => {
       return `
       <div class="modal__small-poster"> </div>
       <div class="container__event_card">
@@ -32,18 +32,18 @@ function renderResults1(response) {
         </div>
         <div class="modal__text-container">
         <h2 class="modal__h1">INFO</h2>
-        <p class="modal__p">${description}</p>
+        <p class="modal__p">${_embedded.description}</p>
         <h2 class="modal__h1">WHEN</h2>
         <p class="modal__p">${dates?.start.localDate}</p>
         <h2 class="modal__h1">WHERE</h2>
-        <p class="modal__p">Kyiv, Ukraine</p>
-        <p class="modal__p" style="padding-top: 5px;">VDNH</p>
+        <p class="modal__p">${_embedded.venues?.[0].city.name}, ${_embedded.venues?.[0].country.name}</p>
+        <p class="modal__p" style="padding-top: 5px;">${name}</p>
         <h2 class="modal__h1">WHO</h2>
-        <p class="modal__p">The Black Eyed Peas</p>
+        <p class="modal__p">${_embedded.venues?.[0].name}</p>
         <h2 class="modal__h1">PRICES</h2>
-        <p class="modal__p">Standart 300-500 UAH</p>
+        <p class="modal__p">${priceRanges?.[0].type} ${priceRanges?.[0].min}-${priceRanges?.[0].max} ${priceRanges?.[0].currency}</p>
         <button class="modal__button">BUY TICKETS</button>
-        <p class="modal__p">VIP 1000-1500 UAH</p>
+        <p class="modal__p">${priceRanges?.[1].type} ${priceRanges?.[1].min}-${priceRanges?.[1].max} ${priceRanges?.[1].currency}</p>
         <button class="modal__button">BUY TICKETS</button>
         </div>
       `;
@@ -76,4 +76,4 @@ modalClose.addEventListener('click', close);
 //   }
 // }
 document.addEventListener('keyup', close);
-console.log(markup);
+// console.log(response);
