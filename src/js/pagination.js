@@ -65,5 +65,3 @@ pagination.on('afterMove', event => {
 
   console.log(currentPage);
 });
-
-console.log(totalItems);
