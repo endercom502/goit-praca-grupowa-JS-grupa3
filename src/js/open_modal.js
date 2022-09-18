@@ -8,8 +8,7 @@ let keyword = '';
 let id = '';
 let size = 1;
 let city = '';
-// const response = axios.get(`${BASE_URL}${id}`, { params });
-// return response;
+
 getEvents(keyword, countryCode, page, id, size, city)
   .then(function (response) {
     if (response.data.page.totalElements === 0) {
@@ -25,7 +24,7 @@ function renderResults1(response) {
   const markup = response.data._embedded.events
     .map(({ images, name, dates, _embedded, description, priceRanges }) => {
       return `
-      <div class="modal__small-poster"> </div>
+      <div class="modal__small-poster" background-image="url('${images?.[2].url}')";> </div>
       <div class="container__event_card">
         <div class="modal__big-img">
             <img class="modal__img_big" src="${images?.[7].url}">
