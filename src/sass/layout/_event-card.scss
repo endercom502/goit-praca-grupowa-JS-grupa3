@@ -1,28 +1,50 @@
-.event_post{
-    display: flex;
-        flex-wrap: wrap;
-        margin-left: -14px;
-        margin-top: -42px;
-        padding-bottom: 150px;
+.events{
+    position: relative;
+        padding-left: 20px;
+        padding-right: 20px;
     
         @media screen and (min-width: 768px) {
-            margin-left: -28px;
-            margin-top: -58px;
+            width: 768px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 32px;
+            padding-right: 32px;
+            }
+            
+        @media screen and (min-width: 1280px) {
+            width: 1280px;
+            padding-left: 16px;
+            padding-right: 16px;
+            }
+}
+.event_post{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: -10px;
+    
+        @media screen and (min-width: 768px) {
+            margin: -16px;
         }
     
         @media screen and (min-width: 1280px) {
-            margin-left: -70px;
-            margin-top: -63px;
-            padding-bottom: 190px;
+            //margin-left: -70px;
+           // margin-top: -63px;
+           // padding-bottom: 190px;
         }
 }
 
 .event_item {
     position: relative;
     display: block;
-    margin-left: 14px;
-    margin-top: 42px;
-    flex-basis: calc((100% - 28px) / 2);
+    z-index: 1;
+    width: 130px;
+    margin: 10px;
+    transition-property: transform;
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    //flex-basis: calc((100% - 28px) / 2);
 
     &::before {
         content: url('../images/cards/square.svg');
@@ -35,14 +57,15 @@
     }
 
     @media screen and (min-width: 768px) {
-        margin-left: 28px;
-        margin-top: 58px;
-        flex-basis: calc((100% - 84px) / 3);
+        //margin-left: 28px;
+        //margin-top: 58px;
+        flex-basis: calc((100% - 32px * 4) / 4);
+        margin: 16px;
 
         &::before {
-            content: url('../images/cards/square.svg');
-            width: 153px;
-            height: 143px;
+            content: url('../images/cards/square-big.svg');
+            width: 109px;
+            height: 101px;
             top: -13px;
             right: -14px;
         }
@@ -51,8 +74,22 @@
     @media screen and (min-width: 1280px) {
         margin-left: 70px;
         margin-top: 63px;
-        flex-basis: calc((100% - 280px) / 4);
+        flex-basis: calc((100% - 32px * 4) / 4);
+
+        &::before {
+                content: url('../images/cards/square-big.svg');
+                width: 153px;
+                height: 143px;
+                top: -13px;
+                right: -14px;
+            }
     }
+
+        &:hover,
+        &:focus {
+            transform: scale(1.1);
+    
+        }
 
     &-name {
         font-weight: 700;
@@ -76,8 +113,8 @@
     }
 
     &-date {
-        font-weight: 400;
-        font-size: 16px;
+        font-weight: 300;
+        font-size: 14px;
         text-align: center;
         color: #ffffff;
         margin-bottom: 5px;
@@ -99,15 +136,31 @@
         word-wrap: break-word;
         -webkit-box-orient: vertical;
         box-orient: vertical;
+        &::before {
+                content: url('../images/cards/localization.svg');
+                width: 7px;
+                height: 10px;
+                margin-right: 3px;
+            }
         }
     }
         .event_item-image {
             position: relative;
-            z-index: 1;
+            z-index: 0;
             margin-bottom: 8px;
             display: block;
             width: 120px;
             height: 151px;
             border-radius: 50px 0;
             object-fit: cover;
+
+            @media screen and (min-width: 768px) {
+                    width: 141px;
+                    height: 178px;
+                }
+            
+            @media screen and (min-width: 1280px) {
+                    width: 267px;
+                    height: 337px;
+                }
         }
