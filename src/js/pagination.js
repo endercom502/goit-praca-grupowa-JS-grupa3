@@ -48,6 +48,7 @@ getEvents(keyword, countryCode, page).then(function (response) {
 });
 
 pagination.on('afterMove', event => {
+  // pagination event handler
   let currentPage = event.page;
   eventCard.innerHTML = ''; // clear current search resulst page
 

@@ -6,11 +6,10 @@ const API_KEY = 'zgJDbIZVlwZnbWttdYxA1sycG5ZV7RfO';
 export const eventCard = document.querySelector('.event #event_post');
 
 export let page = 0;
-let countryCode = '';
-let keyword = '';
 
 export let countryCode = 'PL';
 export let keyword = '';
+let totalItems = '';
 
 export function getEvents(keyword, countryCode, page) {
   const params = {
@@ -45,10 +44,18 @@ export function renderResults(response) {
       return `
         <li class="event_item">
             <a class="event_item-link href="#">
-               <img class="event_item-image" src="${images?.[7].url}" alt="${name}" width="180" height="227" loading="lazy"/>
+               <img class="event_item-image" src="${
+                 images?.[7].url
+               }" alt="${name}" width="180" height="227" loading="lazy"/>
                   <p class="event_item-name"><b>${name}</b></p>
-                  <p class="event_item-date"><b>${dates?.start.localDate}</b></p>
-                  <p class="event_item-city"><b>${_embedded?.venues[0].city ?_embedded?.venues[0].city.name:name}</b></p>
+                  <p class="event_item-date"><b>${
+                    dates?.start.localDate
+                  }</b></p>
+                  <p class="event_item-city"><b>${
+                    _embedded?.venues[0].city
+                      ? _embedded?.venues[0].city.name
+                      : name
+                  }</b></p>
             </a>
          </li>`;
     })
@@ -57,39 +64,33 @@ export function renderResults(response) {
   eventCard.insertAdjacentHTML('beforeend', markup);
 }
 
-
-
 const inputKeyword = document.querySelector('.search-input');
-const inputCountry = document.querySelector('.search-select ')
+const inputCountry = document.querySelector('.search-select ');
 
-console.log(inputKeyword)
+console.log(inputKeyword);
 
 const onSearchFormSubmit = async event => {
-   event.preventDefault();
+  event.preventDefault();
 
-   const query = inputKeyword.value;
-   const country = inputCountry.value;
+  keyword = inputKeyword.value;
+  countryCode = inputCountry.value;
 
+  eventCard.innerHTML = '';
+  try {
+    getEvents(keyword, countryCode)
+      .then(function (response) {
+        if (response.data.page.totalElements === 0) {
+          alert('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
+        } else {
+          renderResults(response);
+        }
+        return (totalItems = response.data.page.totalElements);
+      })
+      .catch(error => console.log(error));
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-   
- eventCard.innerHTML = '';
-   try {
-       getEvents(query,country)
-      .then  (function (response) {
-         if (response.data.page.totalElements === 0) {
-           alert('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
-         } else {
-     
-           renderResults(response);
-         }
-       })
-        .catch(error => console.log(error));
-   
-
-   } catch (err) {
-     console.log(err);
-   }
- };
- 
- inputKeyword.addEventListener('change',onSearchFormSubmit)
- inputCountry.addEventListener('change',onSearchFormSubmit)
+inputKeyword.addEventListener('change', onSearchFormSubmit);
+inputCountry.addEventListener('change', onSearchFormSubmit);
