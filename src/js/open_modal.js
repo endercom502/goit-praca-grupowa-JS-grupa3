@@ -9,16 +9,16 @@ let id = '';
 let size = 1;
 let city = '';
 
-getEvents(keyword, countryCode, page, id, size, city)
-  .then(function (response) {
-    if (response.data.page.totalElements === 0) {
-      console.log('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
-    } else {
-      console.log(response.data._embedded.events);
-      renderResults1(response);
-    }
-  })
-  .catch(error => console.log(error));
+// getEvents(keyword, countryCode, page, id, size, city)
+//   .then(function (response) {
+//     if (response.data.page.totalElements === 0) {
+//       console.log('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
+//     } else {
+//       console.log(response.data._embedded.events);
+//       renderResults1(response);
+//     }
+//   })
+//   .catch(error => console.log(error));
 
 function renderResults1(response) {
   const markup = response.data._embedded.events
