@@ -49,6 +49,7 @@
     margin-left: auto;
     margin-right: auto;
     transform: translate(-50%, 0%);
+    background-repeat: no-repeat;
     @media (max-width: 1280px) {
             width: 595px;
             height: 831px;
@@ -149,7 +150,7 @@
     width: 144px;
     height: 144px;
     border-radius: 100px 100px;
-    background-image: url('./../images/mini_ivent.png');
+    // background-image: url('./../images/mini_ivent.png');
     background-position: 50% 50%;
         background-repeat: no-repeat;
         background-size: cover;
@@ -202,4 +203,7 @@
             font-size: 22px;
         }
 }
- 
+ .modal__img_big {
+    width: 360px; 
+    height: 641px;
+ }

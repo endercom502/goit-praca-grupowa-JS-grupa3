@@ -17,13 +17,17 @@ export function getEvents(keyword, countryCode, page) {
     countryCode: countryCode,
     keyword: keyword,
     page: page,
+    id: id,
+    size: size,
+    description: description,
+    locale: locale,
   };
 
   const response = axios.get(`${BASE_URL}`, { params });
   return response;
 }
 
-getEvents(keyword, countryCode, page)
+getEvents(keyword, countryCode, page, id, size, description, locale)
   .then(function (response) {
     totalItems = response.data.page.totalElements;
     // console.log(totalItems);
@@ -40,9 +44,9 @@ getEvents(keyword, countryCode, page)
 
 export function renderResults(response) {
   const markup = response.data._embedded.events
-    .map(({ images, name, dates, _embedded,id }) => {
+    .map(({ images, name, dates, _embedded, id }) => {
       return `
-        <li class="event_item">
+        <li class="event_item" id="${id}">
             <a class="event_item-link href="#">
                <img class="event_item-image" src="${images?.[7].url}" alt="${name}" width="180" height="227" loading="lazy"/>
                   <p class="event_item-name" event-id='${id}'><b>${name}</b></p>
