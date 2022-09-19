@@ -58,19 +58,12 @@ export function renderResults(response) {
   eventCard.insertAdjacentHTML('beforeend', markup);
 }
 
-<<<<<<< HEAD
 
 //Search by keyword and search by country
 
-=======
->>>>>>> e26a8c62775036861b42d288452480682a28863d
 const inputKeyword = document.querySelector('.search-input');
 const inputCountry = document.querySelector('.search-select ');
 
-<<<<<<< HEAD
-=======
-console.log(inputKeyword);
->>>>>>> e26a8c62775036861b42d288452480682a28863d
 
 const onSearchFormSubmit = async event => {
   event.preventDefault();
