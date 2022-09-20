@@ -6,5 +6,5 @@
 <a align="center" href="https://github.com/kamilawrzesniewska">![GitHub](https://img.shields.io/badge/-kamilawrzesniewska-05122A?style=flat&logo=github)</a>
 <a align="center" href="https://github.com/toxaf13">![GitHub](https://img.shields.io/badge/-toxaf13-05122A?style=flat&logo=github)</a>
 <a align="center" href="https://github.com/MateuszJaz">![GitHub](https://img.shields.io/badge/-MateuszJaz-05122A?style=flat&logo=github)</a>
-  
+<a align="center" href="https://github.com/SGlinkau">![GitHub](https://img.shields.io/badge/-SGlinkau-05122A?style=flat&logo=github)</a>
 </span>
