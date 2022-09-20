@@ -92,6 +92,9 @@
     font-size: 16px;
     font-weight: 500;
     font-style: none;
+    -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
     @media (max-width: 1280px) {}
     @media (max-width: 767px) {
           
@@ -108,6 +111,9 @@
         font-weight: 500;
         font-style: none;
         text-decoration: none;
+        -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+            -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+            box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
 
         @media (max-width: 1280px) {}
 
@@ -120,6 +126,7 @@
     font-size: 24px;
     line-height: 29px;
     margin: 0px;
+    
     @media (max-width: 1280px) {
             font-size: 20px;
             line-height: 24.38px;
@@ -158,6 +165,9 @@
         line-height: 20px;
         border: 1px solid #4C00FE;
         border-radius: 5px;
+        -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+            -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+            box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
         @media (max-width: 1280px) {
             margin-top: 43px;
         }
@@ -195,6 +205,9 @@
         height: 144px;
         border-radius: 100px 100px;
         border: 2px;
+        -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+            -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+            box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
         @media (max-width: 1280px) {
                 width: 70px;
                 height: 70px;
@@ -232,9 +245,13 @@
         }
 }
 .modal__big-img {
+
     width: 360px;
         height: 641px;
         margin-left: 0px;
+        overflow: hidden;
+        margin-left: 30px;
+        
     @media (max-width: 1280px) {
         width: 233px;
         height: 416px;
@@ -250,11 +267,15 @@
 }
  .modal__img_big {
     width: 360px; 
-    height: 641px;
-    margin-left: 30px;
-    max-width: auto;
-  min-height: 641px;
-overflow: hidden;
+    height: auto;
+    -webkit-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        -moz-box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+        box-shadow: 8px 8px 24px 0px rgba(66, 68, 90, 1);
+    
+//     max-width: auto;
+//   min-height: 641px;
+// overflow: hidden;
+box-sizing: border-box;
 @media (max-width: 1280px) {
     width: 233px;
         height: 416px;
