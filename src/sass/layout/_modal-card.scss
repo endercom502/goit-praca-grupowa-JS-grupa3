@@ -1,3 +1,4 @@
+
 .modal__body {
     // background-color: #0E0E0E;
 }
@@ -55,14 +56,13 @@
     @media (max-width: 1280px) {
             width: 595px;
             height: 831px;
-            // transform: translate(12.5%);
         }
     @media (max-width: 767px) {
        width: 272px;
        height: 915px;
        text-align: center;
     border-radius: 150px 0px;
-    // transform: translate(50%);
+
     
     }
 }
@@ -91,11 +91,29 @@
     border-color: transparent;
     font-size: 16px;
     font-weight: 500;
+    font-style: none;
     @media (max-width: 1280px) {}
     @media (max-width: 767px) {
           
         }
 }
+.modal__btn-buy {
+        color: #FFFFFF;
+        background-color: #4C00FE;
+        width: 145px;
+        height: 40px;
+        border-radius: 5px;
+        border-color: transparent;
+        font-size: 16px;
+        font-weight: 500;
+        font-style: none;
+        text-decoration: none;
+
+        @media (max-width: 1280px) {}
+
+        @media (max-width: 767px) {}
+    }
+
 .modal__h1 {
     color: #DC56C5;
     font-weight: 600;
@@ -145,6 +163,7 @@
         }
         @media (max-width: 767px) {
                 width: 230px;
+                height: 60px;
                 margin-top: 25px;
             }
 }
@@ -154,10 +173,11 @@
     width: 144px;
     height: 144px;
     border-radius: 100px 100px;
-    // background-image: url('./../images/mini_ivent.png');
-    background-position: 50% 50%;
-        background-repeat: no-repeat;
-        background-size: cover;
+    margin-top: 75px;
+    // // background-image: url('./../images/mini_ivent.png');
+    // background-position: 50% 50%;
+    //     background-repeat: no-repeat;
+    //     background-size: cover;
         margin-left: auto;
         margin-right: auto;
         @media (max-width: 1280px) {
@@ -169,6 +189,23 @@
                 height: 102px;
             }
 }
+.modal__small-poster-img {
+    top: 0;
+        width: 144px;
+        height: 144px;
+        border-radius: 100px 100px;
+        border: 2px;
+        @media (max-width: 1280px) {
+                width: 70px;
+                height: 70px;
+            }
+        
+            @media (max-width: 767px) {
+                width: 102px;
+                height: 102px;
+            }
+        
+}
 .modal__text-container {
     padding-left: 60px;
     @media (max-width: 1280px) {
@@ -178,20 +215,7 @@
            padding-left: 0;
         }
 }
-.modal__big-img {
-    @media (max-width: 1280px) {
-        width: 233px;
-        height: 416px;
-        overflow: hidden;
-    }
-@media (max-width: 767px) {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;  
-    width: 0;
-    height: 0;
-    }
-}
+
 .modal__esc {
     color: #4C00FE;
     position: absolute;
@@ -207,9 +231,39 @@
             font-size: 22px;
         }
 }
+.modal__big-img {
+    width: 360px;
+        height: 641px;
+        margin-left: 0px;
+    @media (max-width: 1280px) {
+        width: 233px;
+        height: 416px;
+    }
+
+    @media (max-width: 767px) {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        width: 0;
+        height: 0;
+    }
+}
  .modal__img_big {
     width: 360px; 
     height: 641px;
+    margin-left: 30px;
+    max-width: auto;
+  min-height: 641px;
+overflow: hidden;
+@media (max-width: 1280px) {
+    width: 233px;
+        height: 416px;
+    min-height: 416px;
+    margin-left: 10px;
+    }
+        @media (max-width: 767px) {
+            margin-left: auto;
+        }
  }
  .modal__svg-barcode {
    background-image: url(../images/icons/modal-ticket1.svg);
