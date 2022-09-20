@@ -9,12 +9,10 @@ import {
   renderResults,
 } from './search_api';
 
-let totalItems;
-
 const container = document.getElementById('tui-pagination-container'); // pagination container
-const options = {
+export let options = {
   // below default value of options
-  totalItems: 510,
+  totalItems: 0,
   itemsPerPage: 20,
   visiblePages: 5,
   page: page + 1,
@@ -39,29 +37,32 @@ const options = {
       '</a>',
   },
 };
-const pagination = new Pagination(container, options);
 
-getEvents(keyword, countryCode, page).then(function (response) {
-  totalItems = response.data.page.totalElements; //  <--- tutaj jest dostępna wartość
-  console.log(totalItems); // OK.
-  return totalItems; // ale nie jest dostępna poza funkcją.
-});
+export let pagination;
+const init = () => {
+  getEvents(keyword, countryCode, page, options).then(function (response) {
+    let totalItemsResponse = response.data.page.totalElements;
+    console.log(totalItemsResponse);
+    if (totalItemsResponse < 500) {
+      totalItems = response.data.page.totalElements;
+    } else {
+      totalItems = 500;
+    }
 
-pagination.on('afterMove', event => {
-  // pagination event handler
-  let currentPage = event.page;
-  eventCard.innerHTML = ''; // clear current search resulst page
+    options.totalItems = totalItems;
+    console.log(totalItems);
 
-  getEvents(keyword, countryCode, currentPage) // render selected page
-    .then(function (response) {
-      totalPages = response.data.page.totalPages;
-      if (response.data.page.totalElements === 0) {
-        console.log('No events found. Try different quote'); // !! dodać obsługę wyświetlenia komunikatu gdy brak rezultatów !!
-      } else {
-        renderResults(response);
-      }
-    })
-    .catch(error => console.log(error));
+    pagination = new Pagination(container, options);
+    pagination.movePageTo(1);
 
-  console.log(currentPage);
-});
+    pagination.on('afterMove', async event => {
+      // pagination event handler
+      let currentPage = event.page;
+      eventCard.innerHTML = ''; // clear current search result page
+      const response = await getEvents(keyword, countryCode, currentPage - 1); // render selected page
+      await renderResults(response);
+    });
+  });
+};
+
+init();

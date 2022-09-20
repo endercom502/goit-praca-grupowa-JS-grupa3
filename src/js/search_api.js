@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { options, pagination } from './pagination';
+
 //REFERENCE
 export const eventCard = document.querySelector('#event_post');
 const modalBody = document.querySelector('.modal__backdrop');
@@ -13,6 +15,7 @@ export let countryCode = '';
 export let keyword = '';
 let totalItems = '';
 ////////Get by Events/////
+
 export function getEvents(keyword, countryCode, page) {
   const params = {
     apikey: API_KEY,
@@ -42,14 +45,14 @@ export function getByAuthorId(atractionId) {
   return response;
 }
 ////////////////////////////////////////////////////////////////////////////////
-getEvents(keyword, countryCode, page)
+
+getEvents(keyword, countryCode, page). // GET RESULTS AT OPENING ///
   .then(function (response) {
     totalItems = response.data.page.totalElements;
     if (response.data.page.totalElements === 0) {
       console.log('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
     } else {
       renderResults(response);
-      return totalItems;
     }
   })
   .catch(error => console.log(error));
@@ -116,7 +119,7 @@ const eventListCard = ({ name, images, dates, _embedded }) => `
  </a>
  `;
 export function renderResults(response) {
-  const fragment = document.createDocumentFragment();
+    const fragment = document.createDocumentFragment();
   response.data._embedded.events.forEach(event => {
     const li = document.createElement('li');
     li.innerHTML = eventListCard(event);
@@ -136,12 +139,25 @@ const onSearchFormSubmit = async event => {
   eventCard.innerHTML = '';
   eventNameToModal.innerHTML = '';
   //////////////
+
   try {
-    getEvents(query, country)
+    getEvents(keyword, countryCode, page, options, pagination)
+
       .then(function (response) {
         if (response.data.page.totalElements === 0) {
           alert('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
         } else {
+          let totalItemsResponse = response.data.page.totalElements;
+          console.log(totalItemsResponse);
+          if (totalItemsResponse < 500) {
+            // limiting total page amount to render
+            totalItems = response.data.page.totalElements;
+          } else {
+            totalItems = 500;
+          }
+          options.totalItems = totalItems;
+          console.log(totalItems);
+          pagination.reset(totalItems);
           renderResults(response);
         }
       })
