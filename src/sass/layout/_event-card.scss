@@ -4,6 +4,14 @@
     margin-left: auto;
     margin-right: auto;
     max-width: 300px;
+
+    @media screen and (min-width: 768px) {
+        max-width: 625px;
+        }
+    
+        @media screen and (min-width: 1280px) {
+            max-width: 960px;
+        }
 }
 
 .event_post{
@@ -16,7 +24,7 @@
     padding-bottom: 150px;
     
         @media screen and (min-width: 768px) {
-            margin: -16px;
+            margin: -16px -22px -16px -57px;
         }
     
         @media screen and (min-width: 1280px) {
@@ -49,17 +57,16 @@
     }
 
     @media screen and (min-width: 768px) {
-        //margin-left: 28px;
-        //margin-top: 58px;
-        flex-basis: calc((100% - 32px * 4) / 4);
-        margin: 16px;
+        margin-left: 28px;
+        margin-top: 58px px;
+        flex-basis: calc(31% - 28px);
 
         &::before {
             content: url('../images/cards/square-big.svg');
-            width: 109px;
-            height: 101px;
+            width: 153px;
+            height: 143px;
             top: -13px;
-            right: -14px;
+            right: -26px;
         }
     }
 
@@ -150,12 +157,12 @@
             object-fit: cover;
 
             @media screen and (min-width: 768px) {
-                    width: 141px;
-                    height: 178px;
+                    width: 180px;
+                    height: 227px;
                 }
             
             @media screen and (min-width: 1280px) {
-                    width: 267px;
-                    height: 337px;
+                    width: 180px;
+                    height: 227px;
                 }
         }
