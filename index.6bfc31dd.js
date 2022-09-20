@@ -1,2 +1,0 @@
-const openModal=document.querySelector(".event #event_post"),modalBody=document.querySelector(".modal__backdrop"),modalClose=document.querySelector(".modal__esc"),hiden=e=>{modalBody.classList.remove("is-hiddenn")},close=e=>{modalBody.classList.add("is-hiddenn")};openModal.addEventListener("click",hiden),modalClose.addEventListener("click",close),document.addEventListener("keyup",close);
-//# sourceMappingURL=index.6bfc31dd.js.map
