@@ -11,10 +11,10 @@ const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events';
 const API_KEY = 'zgJDbIZVlwZnbWttdYxA1sycG5ZV7RfO';
 
 export let page = 0;
-export let countryCode = '';
+export let countryCode = 'pl';
 export let keyword = '';
 let totalItems = '';
-////////Get by Events/////
+////////Get By Events/////
 
 export function getEvents(keyword, countryCode, page) {
   const params = {
@@ -46,16 +46,19 @@ export function getByAuthorId(atractionId) {
 }
 ////////////////////////////////////////////////////////////////////////////////
 
-getEvents(keyword, countryCode, page). // GET RESULTS AT OPENING ///
+getEvents(keyword, countryCode, page) // GET EVENTS AT OPENING  ///
   .then(function (response) {
     totalItems = response.data.page.totalElements;
     if (response.data.page.totalElements === 0) {
-      console.log('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
+      alert(
+        'Oops! somethings gone wrong. Were working to get it fixed as soon as we can'
+      ); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
     } else {
       renderResults(response);
     }
   })
   .catch(error => console.log(error));
+
 //////////////////////////////////////////////////////////////////////////////////////START FUNCTION OPEN MODAL//////
 const openModalFunction = event => {
   const eventId = event.target.id;
@@ -82,6 +85,8 @@ const openModalFunction = event => {
                 eventCard.innerHTML = '';
                 eventNameToModal.innerHTML = '';
                 ///////////////
+                options.totalItems = totalItems;
+                pagination.reset(totalItems);
                 renderResults(response);
                 console.log('More events from author');
                 console.log(response.data._embedded.events);
@@ -119,7 +124,7 @@ const eventListCard = ({ name, images, dates, _embedded }) => `
  </a>
  `;
 export function renderResults(response) {
-    const fragment = document.createDocumentFragment();
+  const fragment = document.createDocumentFragment();
   response.data._embedded.events.forEach(event => {
     const li = document.createElement('li');
     li.innerHTML = eventListCard(event);
@@ -131,18 +136,19 @@ export function renderResults(response) {
   eventCard.appendChild(fragment);
 }
 /////////END RENDERING///////////////////////////////////////////////Search by keyword and search by country////////////
+
 const onSearchFormSubmit = async event => {
   event.preventDefault();
-  const query = inputKeyword.value;
-  const country = inputCountry.value;
-  //////Clean////
+  const keyword = inputKeyword.value;
+  const countryCode = inputCountry.value;
+
+  //////Clear////
   eventCard.innerHTML = '';
   eventNameToModal.innerHTML = '';
   //////////////
 
   try {
     getEvents(keyword, countryCode, page, options, pagination)
-
       .then(function (response) {
         if (response.data.page.totalElements === 0) {
           alert('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
