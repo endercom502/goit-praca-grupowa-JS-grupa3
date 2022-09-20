@@ -1,6 +1,6 @@
 import axios from 'axios';
 //REFERENCE
-const eventCard = document.querySelector('#event_post');
+export const eventCard = document.querySelector('#event_post');
 const modalBody = document.querySelector('.modal__backdrop');
 const eventNameToModal = document.querySelector('.modal__container');
 const inputKeyword = document.querySelector('.search-input');
@@ -115,7 +115,7 @@ const eventListCard = ({ name, images, dates, _embedded }) => `
     }</b></p>
  </a>
  `;
-function renderResults(response) {
+export function renderResults(response) {
   const fragment = document.createDocumentFragment();
   response.data._embedded.events.forEach(event => {
     const li = document.createElement('li');
