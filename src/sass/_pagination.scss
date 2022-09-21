@@ -16,24 +16,6 @@ a {
 
 }
 
-;
-
-.dot {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  // width: 30px;
-  // height: 30px;
-  & a .tui-page-btn {
-    color: #ffffff;
-  }
-
-  ;
-}
-
-;
-
 .tui-page-btn {
   display: flex;
   justify-content: space-between;
@@ -70,7 +52,9 @@ a {
   }
 }
 
-.tui-is-disabled {
+.tui-is-disabled,
+.tui-prev,
+.tui-next {
   display: none;
 }
 
