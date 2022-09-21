@@ -72,7 +72,10 @@
     margin-top: 41px;
     @media (max-width: 1280px) {}
     @media (max-width: 767px) {
+        max-width: 272px;
+        max-height: 915px;
             margin-top: 7.8px;
+            
         }
 }
 
@@ -146,7 +149,7 @@
             width: 265px;
     }
     @media (max-width: 767px) {
-            width: 243px;
+            max-width: 224px;
            
         }
 }
@@ -225,7 +228,8 @@
         padding-left: 30px;
     }
     @media (max-width: 767px) {
-           padding-left: 0;
+        padding-left: 0;
+        max-width: 224px;
         }
 }
 
