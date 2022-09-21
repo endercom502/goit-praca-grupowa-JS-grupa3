@@ -28,7 +28,7 @@ export let options = {
       '<span class="tui-ico-{{type}}">{{type}}</span>' +
       '</a>',
     disabledMoveButton:
-      '<span class="idden tui-page-btn tui-is-disabled tui-{{type}}" hidden>' +
+      '<span class="hidden tui-page-btn tui-is-disabled tui-{{type}}" hidden>' +
       '<span class="tui-ico-{{type}}">{{type}}</span>' +
       '</span>',
     moreButton:
@@ -42,7 +42,8 @@ export let pagination;
 const init = () => {
   getEvents(keyword, countryCode, page, options).then(function (response) {
     let totalItemsResponse = response.data.page.totalElements;
-    console.log(totalItemsResponse);
+    console.log('wyniki: ', totalItemsResponse);
+
     if (totalItemsResponse < 500) {
       totalItems = response.data.page.totalElements;
     } else {
@@ -50,7 +51,7 @@ const init = () => {
     }
 
     options.totalItems = totalItems;
-    console.log(totalItems);
+    console.log('options total:', totalItems);
 
     pagination = new Pagination(container, options);
     pagination.movePageTo(1);

@@ -3,6 +3,7 @@ import { options, pagination } from './pagination';
 
 //REFERENCE
 export const eventCard = document.querySelector('#event_post');
+const paginationDiv = document.querySelector('.tui-pagination');
 const modalBody = document.querySelector('.modal__backdrop');
 const eventNameToModal = document.querySelector('.modal__container');
 const inputKeyword = document.querySelector('.search-input');
@@ -11,7 +12,7 @@ const BASE_URL = 'https://app.ticketmaster.com/discovery/v2/events';
 const API_KEY = 'zgJDbIZVlwZnbWttdYxA1sycG5ZV7RfO';
 
 export let page = 0;
-export let countryCode = 'pl';
+export let countryCode = 'PL';
 export let keyword = '';
 let totalItems = '';
 ////////Get By Events/////
@@ -75,7 +76,7 @@ const openModalFunction = event => {
       const openMFA = event => {
         const authorId = event.target.id;
         try {
-          getByAuthorId(authorId)
+          getByAuthorId(authorId, options)
             .then(function (response) {
               if (response.data.page.totalElements === 0) {
                 alert('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
@@ -84,10 +85,11 @@ const openModalFunction = event => {
                 //////////CLEAN
                 eventCard.innerHTML = '';
                 eventNameToModal.innerHTML = '';
+                totalItems = response.data.page.totalElements;
                 ///////////////
                 options.totalItems = totalItems;
-                pagination.reset(totalItems);
                 renderResults(response);
+                pagination.reset(totalItems);
                 console.log('More events from author');
                 console.log(response.data._embedded.events);
                 console.log('Modal close - cleaner');
@@ -139,12 +141,13 @@ export function renderResults(response) {
 
 const onSearchFormSubmit = async event => {
   event.preventDefault();
-  const keyword = inputKeyword.value;
-  const countryCode = inputCountry.value;
-
+  keyword = inputKeyword.value;
+  countryCode = inputCountry.value;
   //////Clear////
   eventCard.innerHTML = '';
   eventNameToModal.innerHTML = '';
+  paginationDiv.classList.add('is-hiddenn');
+
   //////////////
 
   try {
@@ -153,11 +156,12 @@ const onSearchFormSubmit = async event => {
         if (response.data.page.totalElements === 0) {
           alert('No events found. Try different quote'); // dodać obsługę wyświetlenia komunikatu gdy brak rezultatów
         } else {
+          paginationDiv.classList.remove('is-hiddenn');
           let totalItemsResponse = response.data.page.totalElements;
           console.log(totalItemsResponse);
           if (totalItemsResponse < 500) {
             // limiting total page amount to render
-            totalItems = response.data.page.totalElements;
+            totalItems = totalItemsResponse;
           } else {
             totalItems = 500;
           }

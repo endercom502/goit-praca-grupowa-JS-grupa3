@@ -1,4 +1,8 @@
-.pagination {
+a {
+  text-decoration: none;
+}
+
+.tui-pagination {
   display: flex;
   font-family: 'Montserrat';
   font-style: normal;
@@ -8,51 +12,67 @@
   list-style: none;
   justify-content: center;
   align-items: center;
-};
+  margin: 85px 0;
+
+}
+
+;
 
 .dot {
   display: flex;
   justify-content: center;
   align-items: center;
+
   // width: 30px;
   // height: 30px;
-  & span {
+  & a .tui-page-btn {
     color: #ffffff;
-  };
-};
+  }
 
-.page {
+  ;
+}
+
+;
+
+.tui-page-btn {
   display: flex;
   justify-content: space-between;
   // width: 30px;
   // height: 30px;
   padding: 5px 12px 5px 12px;
   cursor: pointer;
-  & span {
-    color: #ffffff;
-  };
+  color: #ffffff;
+
+  ;
+
   &:hover {
-    border: 1px solid #DC56C5;
+    // border: 1px solid #DC56C5;
     color: #DC56C5;
     border-radius: 10px 0px;
   }
-};
+}
 
-.active-page {
+;
+
+.tui-is-selected {
   display: flex;
   justify-content: center;
   align-items: center;
-  // width: 30px;
-  // height: 30px;
+  width: 30px;
+  height: 30px;
   color: #DC56C5;
   border: 1px solid #DC56C5;
   border-radius: 10px 0px;
   animation: changePage 0.5s ease-in-out;
+
   & span {
     color: #DC56C5;
-  };
-  
-};
+  }
+}
+
+.tui-is-disabled {
+  display: none;
+}
 
 @keyframes changePage {
   0% {
