@@ -23,18 +23,6 @@ export let options = {
     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
     currentPage:
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-    moveButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}">' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
-      '</a>',
-    disabledMoveButton:
-      '<span class="idden tui-page-btn tui-is-disabled tui-{{type}}" hidden>' +
-      '<span class="tui-ico-{{type}}">{{type}}</span>' +
-      '</span>',
-    moreButton:
-      '<a href="#" class="tui-page-btn tui-{{type}}-is-ellip">' +
-      '<span class="tui-ico-ellip">...</span>' +
-      '</a>',
   },
 };
 
@@ -42,7 +30,8 @@ export let pagination;
 const init = () => {
   getEvents(keyword, countryCode, page, options).then(function (response) {
     let totalItemsResponse = response.data.page.totalElements;
-    console.log(totalItemsResponse);
+    console.log('wyniki: ', totalItemsResponse);
+
     if (totalItemsResponse < 500) {
       totalItems = response.data.page.totalElements;
     } else {
@@ -50,7 +39,7 @@ const init = () => {
     }
 
     options.totalItems = totalItems;
-    console.log(totalItems);
+    console.log('options total:', totalItems);
 
     pagination = new Pagination(container, options);
     pagination.movePageTo(1);
