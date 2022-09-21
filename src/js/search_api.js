@@ -46,7 +46,7 @@ export function getByAuthorId(atractionId) {
 }
 ////////////////////////////////////////////////////////////////////////////////
 
-getEvents(keyword, countryCode, page). // GET RESULTS AT OPENING ///
+getEvents(keyword, countryCode, page) // GET RESULTS AT OPENING ///
   .then(function (response) {
     totalItems = response.data.page.totalElements;
     if (response.data.page.totalElements === 0) {
