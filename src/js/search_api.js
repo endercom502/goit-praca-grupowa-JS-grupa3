@@ -48,6 +48,7 @@ export function getByAuthorId(atractionId) {
 ////////////////////////////////////////////////////////////////////////////////
 
 getEvents(keyword, countryCode, page) // GET EVENTS AT OPENING  ///
+
   .then(function (response) {
     totalItems = response.data.page.totalElements;
     if (response.data.page.totalElements === 0) {
@@ -116,7 +117,7 @@ const openModalFunction = event => {
 const eventListCard = ({ name, images, dates, _embedded }) => `
  <a class="event_item-link " href="#">
     <img class="event_item-image" " src="${
-      images?.[7].url ? images?.[0].url : 'Not Found'
+      images?.[4].url ? images?.[0].url : 'Not Found'
     }" alt="${name}" width="180" height="227" loading="lazy"/>
     <p class="event_item-name" "><b>${name}</b></p>
     <p class="event_item-date" "><b>${dates?.start.localDate}</b></p>
@@ -189,7 +190,7 @@ function renderModalResults(response) {
      </div>
       <div class="container__event_card">
         <div class="modal__big-img">
-            <img class="modal__img_big" src="${images?.[2].url}">
+            <img class="modal__img_big" src="${images?.[4].url}">
         </div>
         <div class="modal__text-container">
         <h2 class="modal__h1">INFO</h2>
@@ -217,16 +218,19 @@ function renderModalResults(response) {
                <svg class="modal__svg-barcode" width="24" height="16">
                         <use href=""></use>
                   </svg>
-        ${priceRanges?.length > 1 ? priceRanges?.[1].type : 'Vip'} ${
-        priceRanges?.length > 1 ? priceRanges?.[1].min : 'na stanie'
-      }-${priceRanges?.length > 1 ? priceRanges?.[1].max : '0'} ${
-        priceRanges?.length > 1 ? priceRanges?.[1].currency : ''
-      }</p>
-        <button class="modal__button">BUY TICKETS</button>
+        ${
+          priceRanges?.length > 1
+            ? priceRanges?.[1].type
+            : 'TICKETS NOT AVAILABLE'
+        } ${priceRanges?.length > 1 ? priceRanges?.[1].min : ''}${
+        priceRanges?.length > 1 ? priceRanges?.[1].max : ''
+      } ${priceRanges?.length > 1 ? priceRanges?.[1].currency : ''}</p>
+        <button class="modal__button"><a class="modal__btn-buy" href="${url}" target="_blank">BUY TICKETS
+        </a></button>
         <div><button id='${
           _embedded.attractions?.[0].id
         }' class="modal__more-from">MORE FROM THIS AUTHOR</button>
-        <button class="modal__esc">x</button></div>
+        <button class="modal__esc">X</button></div>
         </div>
       `;
     })
