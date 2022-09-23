@@ -33,13 +33,11 @@ const init = () => {
     console.log('wyniki: ', totalItemsResponse);
 
     if (totalItemsResponse < 500) {
-      totalItems = response.data.page.totalElements;
+      options.totalItems = response.data.page.totalElements;
     } else {
-      totalItems = 500;
+      options.totalItems = 500;
     }
-
-    options.totalItems = totalItems;
-    console.log('options total:', totalItems);
+    console.log('options total:', options.totalItems);
 
     pagination = new Pagination(container, options);
     pagination.movePageTo(1);
