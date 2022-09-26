@@ -260,3 +260,46 @@ input::placeholder {
     margin-top: 10px;
   }
 }
+.spark{
+      color: #fee;
+      text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff0dbf, 0 0 0.5em #ff0dbf, 0 0 0.1em #ff0dbf, 0 10px 3px #000;
+      animation: blink 2s linear infinite;
+    }
+.spark2{
+  color: #fee;
+    text-shadow: 0 -40px 100px, 0 0 2px, 0 0 1em #ff0dbf, 0 0 0.5em #ff0dbf, 0 0 0.1em #ff0dbf, 0 10px 3px #000;
+    animation: blink 3s linear infinite;
+}
+
+        @keyframes blink {
+  79% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  80% {
+    color: #333;
+  }
+  81% {
+    text-shadow: none;
+  }
+  82% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  83% {
+    color: #333;
+    text-shadow: none;
+  }
+  84% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+  89% {
+    color: #333;
+    text-shadow: none;
+  }
+  92.5% {
+    color: inherit;
+    text-shadow: inherit;
+  }
+}
