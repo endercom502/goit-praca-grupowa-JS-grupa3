@@ -48,6 +48,8 @@ const init = () => {
       eventCard.innerHTML = ''; // clear current search result page
       const response = await getEvents(keyword, countryCode, currentPage - 1); // render selected page
       await renderResults(response);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
     });
   });
 };
